@@ -24,6 +24,8 @@ private:
 	float size;
 
 	bool isDestroyed;
+	bool expired;
+	float movementOffset = 0.0;         // how the particles float away (simple version)
 
 	Creature *pacmanRef;
 	//Pac *pacmanRef;
@@ -32,6 +34,7 @@ private:
 
 public:
 	//BreakableWall(Vec3 spawnLocation, float wallSize );
+	BreakableWall();
 	BreakableWall(float xPos, float yPos, float zPos, float wallSize );
 
 	void Draw();			//; render the wall
@@ -55,5 +58,10 @@ public:
 	void SetDestroyWall()
 	{
 		isDestroyed = true;
+	}
+
+	bool GetIfExpired()
+	{
+		return expired;
 	}
 };

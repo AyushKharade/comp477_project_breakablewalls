@@ -10,6 +10,11 @@ if possible, lets do a wall texture.
 
 #include"BreakableWall.h"
 
+BreakableWall::BreakableWall()
+{
+
+}
+
 BreakableWall::BreakableWall(float xPos, float yPos, float zPos, float wallSize)
 {
 	xPosition = xPos;
@@ -37,7 +42,94 @@ void BreakableWall::Draw()
 
 	// draw destroyed particles now:
 	
-	//if (GetDestroyed) {}
+	if (GetDestroyed() && !expired) 
+	{
+		movementOffset += 0.05;
+
+		// block piece 1
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition+movementOffset, yPosition+movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+
+		//block piece 2
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition-movementOffset, yPosition-movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+		// block piece 3
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition - movementOffset, yPosition + movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+
+		// block piece 4
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition + movementOffset, yPosition - movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+
+		// block piece 5
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition + movementOffset, yPosition, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+		// block piece 6
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition - movementOffset, yPosition, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+
+		// block piece 7
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition, yPosition + movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+		// block piece 8
+		//draw wall at location
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glColor3f(0, 0, 1); // blue
+		glPushMatrix();
+		glTranslatef(xPosition, yPosition - movementOffset, 0);
+		glutSolidCube(size*0.5f);
+		glPopMatrix();
+
+
+
+
+
+		// delete 
+		if (movementOffset > 5)
+			expired = true;
+	}
 	
 }
 

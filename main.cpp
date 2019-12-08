@@ -79,15 +79,19 @@ float lightIntensity = 1;
 //Breakable walls objects here: [Put all walls in an array, when doing multiple walls]
 // array
 const int wallCount = 3;
-BreakableWall *BWall_Array[wallCount];
+BreakableWall BWall_Array[wallCount];
 
 // create wall objects here, and add them to the array in main so its easy to change values.
 
 // Breakable Wall Constructure signature --> new BreakableWall (float x, float y, float z, float sizeOfCube)
 
-BreakableWall *BWall1 = new BreakableWall(12, 5, 0.0, 1);		// in a acceptable spot (not clipping)
-BreakableWall *BWall2 = new BreakableWall(5, 13, 0.0, 1);
-BreakableWall *BWall3 = new BreakableWall(17, 1, 0.0, 1);
+//BreakableWall *BWall1 = new BreakableWall(12, 5, 0.0, 1);		// in a acceptable spot (not clipping)
+//BreakableWall *BWall2 = new BreakableWall(5, 13, 0.0, 1);
+//BreakableWall *BWall3 = new BreakableWall(17, 1, 0.0, 1);
+
+BreakableWall BWall1(12,5,0.0,1);
+BreakableWall BWall2(5,13,0.0,1);
+BreakableWall BWall3(17,1,0.0,1);
 
 void init()
 {
@@ -302,9 +306,12 @@ void display()
 	// draw walls
 	for (int i = 0; i < wallCount; i++)
 	{
-		BWall_Array[i]->Draw();
-		// detect range to player
-		BWall_Array[i]->DistanceToPac();
+		if (!BWall_Array[i].GetIfExpired())
+		{
+			BWall_Array[i].Draw();
+			// detect range to player
+			BWall_Array[i].DistanceToPac();
+		}
 	}
 
 	// screen information
@@ -486,9 +493,9 @@ int main(int argc, char** argv)
 	ghosts[3]->scatterTileY = -2;
 
 	//attach pacman reference to walls
-	BWall1->AttachPacmanReference(pacman);
-	BWall2->AttachPacmanReference(pacman);
-	BWall3->AttachPacmanReference(pacman);
+	BWall1.AttachPacmanReference(pacman);
+	BWall2.AttachPacmanReference(pacman);
+	BWall3.AttachPacmanReference(pacman);
 
 
 	// init walls
