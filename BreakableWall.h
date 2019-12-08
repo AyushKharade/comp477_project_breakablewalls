@@ -4,6 +4,7 @@
 #include "Vec3.h"
 #include <GL/glew.h>
 #include "glut.h"
+//#include "pac.h"
 #define TIME_STEPSIZE2 0.5*0.5 // how large time step each particle takes each frame
 
 class BreakableWall
@@ -19,6 +20,7 @@ private:
 
 	bool isDestroyed;
 
+	//Pac *pacmanRef;
 	float distanceToPacMan;
 
 
@@ -27,7 +29,17 @@ public:
 	BreakableWall(float xPos, float yPos, float zPos, float wallSize );
 
 	void Draw();			//; render the wall
+	void DistanceToPac();
 	void Destroy();      // do the destruction particle effect and stop rendering.
+
+
+	//void AttachPacmanReference(Pac *pacRef)
+	//{
+		//if (pacRef != NULL)
+		//{
+			//pacmanRef = pacRef;
+		//}
+	//}
 
 	bool GetDestroyed()
 	{
