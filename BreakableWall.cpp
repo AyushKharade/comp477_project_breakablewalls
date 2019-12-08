@@ -30,21 +30,26 @@ void BreakableWall::Draw()
 		glNormal3f(0.0f, 0.0f, 1.0f);
 		glColor3f(1, 0, 0); // Red
 		glPushMatrix();
-		glTranslatef(xPosition, yPosition, zPosition);
+		glTranslatef(xPosition, yPosition, 0);
 		glutSolidCube(size);
 		glPopMatrix();
 	}
+
+	// draw destroyed particles now:
+	
+	//if (GetDestroyed) {}
+	
 }
 
 
 void BreakableWall::DistanceToPac()
 {
-	//if (pacmanRef!=NULL)
-	//{
-		//if(pacmanRef->tileX == xPosition && pacmanRef->tileY==yPosition)
-		//{
+	if (pacmanRef!=NULL)
+	{
+		if((int)(pacmanRef->x) == (int)(xPosition) && (int)(pacmanRef->y) ==(int)(yPosition))
+		{
 			// destory and stop drawing.
-			//SetDestroyWall();
-		//}
-	//}
+			SetDestroyWall();
+		}
+	}
 }

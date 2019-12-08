@@ -87,7 +87,7 @@ BreakableWall *BWall_Array[wallCount];
 
 BreakableWall *BWall1 = new BreakableWall(12, 5, 0.0, 1);		// in a acceptable spot (not clipping)
 BreakableWall *BWall2 = new BreakableWall(5, 13, 0.0, 1);
-BreakableWall *BWall3 = new BreakableWall(18, 1, 0.0, 1);
+BreakableWall *BWall3 = new BreakableWall(17, 1, 0.0, 1);
 
 void init()
 {
@@ -300,13 +300,11 @@ void display()
 
 
 	// draw walls
-	//B_Wall1->Draw();
-
-	// draw walls
 	for (int i = 0; i < wallCount; i++)
 	{
 		BWall_Array[i]->Draw();
 		// detect range to player
+		BWall_Array[i]->DistanceToPac();
 	}
 
 	// screen information
@@ -486,6 +484,12 @@ int main(int argc, char** argv)
 	// Clyde:
 	ghosts[3]->scatterTileX = 0;
 	ghosts[3]->scatterTileY = -2;
+
+	//attach pacman reference to walls
+	BWall1->AttachPacmanReference(pacman);
+	BWall2->AttachPacmanReference(pacman);
+	BWall3->AttachPacmanReference(pacman);
+
 
 	// init walls
 	BWall_Array[0] = BWall1;
